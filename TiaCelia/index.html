@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCArtesanato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poiret+One&family=Sacramento&family=Staatliches&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+        body {
+            background-color: #222222;
+        }
+        
+        .card-text {
+            color: #828282;
+            font-size: 18px;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+            height: 100px;
+            background-image: url(./MADEIRAFUNDO.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-bottom: 2px solid white;
+        }
+    
+        a.nav-link {
+            color: white;
+            font-size: 25px;
+            margin-right: 20px;
+            font-weight: bold;
+            font-family: "Staatliches", sans-serif;
+        }
+    
+        .navbar-brand {
+            font-size: 40px;
+            padding: 20px;
+            font-family: "Playball", cursive;
+            font-weight: bold;
+        }
+    
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 35px;
+            }
+    
+            a.nav-link {
+                font-size: 20px;
+            }
+        }
+    
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 30px;
+            }
+    
+            a.nav-link {
+                font-size: 18px;
+            }
+        }
+    
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 30px;
+        }
+    
+        @media (max-width: 768px) {
+            .card {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+    
+        iframe {
+            width: 100%;
+            height: 200px;
+        }
+    
+        img.card-img-top {
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            object-fit: contain;
+            aspect-ratio: 4/3;
+        }
+    
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgb(255, 255, 255);
+        }
+    
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(212, 135, 72, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+        }
+    
+        .navbar-toggler {
+            background-color: transparent;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+    
+        .navbar-collapse {
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background-image: url(./MADEIRAFUNDO.webp);
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+                -webkit-backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                padding: 10px;
+                z-index: 2;
+                border-left: 2px solid white;
+                border-right: 2px solid white;
+                border-bottom: 2px solid white;
+                margin-top: 5.5px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+        }
+
+        #localizacao {
+            background-color: #0c0c0c;
+            padding: 20px;
+            border-radius: 6px 60px 6px 60px;
+            border: 1px solid white;
+        }
+    
+        .rua {
+            text-align: center;
+            color: white;
+        }
+    
+        p {
+            font-family: "Staatliches", sans-serif;
+            font-size: 18px;
+        }
+    
+        .card-body {
+            background-color: rgb(224, 224, 224);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+    
+        .wts {
+            width: 30px;
+            height: 30px;
+        }
+    
+        .footer {
+            margin-top: 20px;
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            background-image: url(./MADEIRAFUNDO.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-top: 2px solid white;
+            font-weight: bold;
+        }
+    
+        .mapa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    
+        iframe {
+            border-radius: 10px;
+            width: 70%;
+        }
+    
+        @media (max-width: 768px) {
+            iframe {
+                width: 90%;
+            }
+        }
+    
+        #centro-texto {
+            color: white;
+            font-weight: bold;
+            font-family: "Staatliches", sans-serif;
+            font-size: 32px;
+        }
+    
+        @media (max-width: 576px) {
+            #centro-texto {
+                font-size: 24px;
+            }
+        }
+    
+        /* Estilos do modal */
+        .modal-body {
+            padding: 0;
+        }
+    
+        #zoomedImage {
+            width: 100%;
+            height: auto;
+        }
+    
+        .btn-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1050;
+        }
+    
+        /* Responsividade geral */
+        @media (max-width: 992px) {
+            .card-title {
+                font-size: 18px;
+            }
+    
+            .card-text {
+                font-size: 24px;
+            }
+    
+            .btn {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            #localizacao {
+                width: 100%;
+                border-bottom: 1px solid white;
+                border-top: 1px solid white;
+                border-left: none;
+                border-right: none;
+            }
+        }
+    
+        @media (max-width: 576px) {
+            .card-title {
+                font-size: 22px;
+            }
+    
+            .card-text {
+                font-size: 18px;
+            }
+    
+            .btn {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">MCArtesanato</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#produtos">Produtos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#localizacao">Localização</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br><br><br><br><br>
+    <!-- Produtos -->
+    <div class="container" id="produtos">
+        <h2 class="text-center mb-4" id="centro-texto">Nossos Produtos</h2>
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <!-- Cards de Produtos (total 12) -->
+            <!-- Card repetido para exemplo -->
+            <div class="col">
+                <div class="card">
+                    <img src="./CD4090EB-0BEE-4D26-A432-8F481EDCDAB6.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour Beefeader</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./E8BDE5E3-4F4C-4FE4-8C6B-D3D2EA49949D.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour Passport</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./F93984BD-1B40-4A5B-B33A-1689C9D278AA.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour Garrafinhas Mini</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 100,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./0C0DAA6D-BC0D-4D3D-9E03-DA272FBD5865.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour Red Label</b></h5>
+                        <p class="card-text">Opção também na cor marrom.</p>
+                        <p class="text-success fw-bold">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./106F7FD8-1D6D-4D05-8AEC-1330E1ADF75F.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour JackDaniel's</b></h5>
+                        <p class="card-text">Opções em azul, verde e vermelho.</p>
+                        <p class="text-success fw-bold">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./AC5DD2CA-F5FB-4592-907B-20EA78AED118.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour Ballantines</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 175,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./BDBCEFF6-800F-4738-B513-CAE722EEF2FD.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abridor de garrafas (Parede)</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 65,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./C65FBDEA-A0B3-4C49-B7D1-8AF69A2EBE08.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Abajour 2 Garrafinhas Mini</b></h5>
+                        <p class="card-text">Opções nas cores VERDE, LILÁS e VERMELHO.</p>
+                        <p class="text-success fw-bold">R$ 140,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./DA0D7F42-18C4-48DB-B79D-46358989DF6E.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Porta Incenso</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 65,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./96C21907-7957-423F-9959-D932FBC987E0.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Porta Shampoo, e Sabonete</b></h5>
+                        <p class="card-text">Porta shampoo, sabonete líquido e condicionador.</p>
+                        <p class="text-success fw-bold">R$ R$ 100,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="./36D73B2F-0077-4C60-9AF8-0195C354E276.webp" class="card-img-top" alt="Produto" data-bs-toggle="modal" 
+                    data-bs-target="#imageZoomModal">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><b>Porta Velas</b></h5>
+                        <p class="card-text"></p>
+                        <p class="text-success fw-bold">R$ 65,00</p>
+                        <a href="#" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Adicionar mais cards aqui -->
+        </div>
+    </div>
+
+        <!-- Modal para Zoom da Imagem -->
+    <div class="modal fade" id="imageZoomModal" tabindex="-1" aria-labelledby="imageZoomModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Botão de Fechar -->
+                <button 
+                    type="button" 
+                    class="btn-close position-absolute top-0 end-0 m-2" 
+                    data-bs-dismiss="modal" 
+                    aria-label="Close">
+                </button>
+                <div class="modal-body p-0">
+                    <img id="zoomedImage" src="" alt="Imagem ampliada" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Localização -->
+    <div class="container my-5" id="localizacao">
+        <h2 class="text-center mb-4" id="centro-texto">Nossa Localização</h2>
+        <p class="rua">Rua Dr. Hamilton Portugal Pereira, 680 - Cajuru, Curitiba - PR, 82980-120</p>
+        <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3601.893156809151!2d-49.196088124964184!3d-25.475242877533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dcf00fd1f36209%3A0xda47dbc5c4bacc70!2sRua%20Dr.%20Hamilton%20Portugal%20Pereira%2C%20680%20-%20Cajuru%2C%20Curitiba%20-%20PR%2C%2082980-120!5e0!3m2!1spt-PT!2sbr!4v1733091974826!5m2!1spt-PT!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+
+    <!-- Botão WhatsApp -->
+    <div class="whatsapp-btn" onclick="window.open('https:wa.me/+5541996738085', '_blank')">
+        <img src="./whatsapp-social-media-svgrepo-com.svg" class="wts">
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 MCArtesanato. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <script>
+        // Atualizar a imagem do modal ao clicar
+        const imageZoomModal = document.getElementById('imageZoomModal');
+        const zoomedImage = document.getElementById('zoomedImage');
+    
+        imageZoomModal.addEventListener('show.bs.modal', function (event) {
+            const image = event.relatedTarget; // Imagem clicada
+            const imageUrl = image.getAttribute('src'); // Pega o src da imagem
+            zoomedImage.setAttribute('src', imageUrl); // Define o src no modal
+        });
+    </script>
+</body>
+</html>
